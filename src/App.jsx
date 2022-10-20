@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import RecipeSearch from './pages/RecipeSearch/RecipeSearch'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -17,7 +18,7 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import * as authService from './services/authService'
 
 // styles
-import './app.css'
+import './App.css'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
@@ -51,6 +52,14 @@ const App = () => {
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/recipe-search"
+          element={
+            <ProtectedRoute user={user}>
+              <RecipeSearch />
             </ProtectedRoute>
           }
         />
