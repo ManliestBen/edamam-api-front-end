@@ -1,11 +1,14 @@
 import { useState } from "react"
 import styles from './RecipeSearch.module.css'
+import * as recipeService from '../../services/recipeService'
 
 const RecipeSearch = () => {
 
   const [formData, setFormData] = useState({
     recipeQuery: ''
   })
+
+  const [results, setResults] = useState([])
 
   const handleChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -14,8 +17,8 @@ const RecipeSearch = () => {
   const handleSubmit = async evt => {
     evt.preventDefault()
     try {
-      // await some API call
-      // use result of API call to set state for this component
+      const resultData = await recipeService.search(formData)
+      setResults(resultData)
     } catch (err) {
       console.log(err)
     }
